@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AzureChat</title>
+  </head>
+  <body>
+    <form action="/sendMessage" method="POST">
+        <h4><label for="username">Ваше имя:</label></h4>
+        <input type="text" placeholder="Anonymous" name="username">
+        <h4><label for="exampleInputTitle1">Ваше сообщение:</label></h4>
+        <div class="form-group">
+        <textarea rows="10" class="form-control" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+    <br/>
+    <br/>
+    <div class="content">
+        <% for(let i=0; i<Chat.length;i++) {%>
+            <div class="username">
+                <h4><%=Chat[i].username%> :</h4>
+            </div>
+            <div class="message"><%=Chat[i].message%></div>
+        <%}%>
+    </div>
+  </body>
+</html>
