@@ -3,27 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>AzureChat</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style/style.css"/>
+    <title>AzureApp</title>
   </head>
-  <body>
-    <form action="/sendMessage" method="POST">
-        <h4><label for="username">Ваше имя:</label></h4>
-        <input type="text" placeholder="Anonymous" name="username">
-        <h4><label for="exampleInputTitle1">Ваше сообщение:</label></h4>
-        <div class="form-group">
-        <textarea rows="10" class="form-control" name="message" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Отправить</button>
-    </form>
-    <br/>
-    <br/>
+  <body> 
     <div class="content">
-        <% for(let i=0; i<Chat.length;i++) {%>
-            <div class="username">
-                <h4><%=Chat[i].username%> :</h4>
-            </div>
-            <div class="message"><%=Chat[i].message%></div>
-        <%}%>
+      <button onclick='alert("Нажал")'></button>
     </div>
   </body>
 </html>
