@@ -8,9 +8,13 @@ passport.use(new VKontakteStrategy({
     callbackURL:  "https://rocketazureapp.azurewebsites.net//auth/vkontakte/callback"
   },
   function(accessToken, refreshToken, params, profile, done) {
-    User.findOrCreate({ vkontakteId: profile.id }, function (err, user) {
-      return done(err, user);
-    });
+    UserModel.findOne({ vkontakteId: profile.id }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        let user = UserModel.create({vkontakteId : profile.id})
+      }
+      return done(null, user);
+    })
   }
 ));
 module.exports = passport
