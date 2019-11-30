@@ -18,4 +18,26 @@ passport.use(new VKontakteStrategy({
   }
 ));
 
+passport.serializeUser(function(user, done) {
+  console.log('Сериализация: ', user)
+  done(null, user.vkontakteId)
+})
+
+passport.deserializeUser(async function(id, done) {
+  try{
+    const user = await UserModel.findOne({ vkontakteId: id})
+    if(!user) {
+      return done(null, false)
+    }
+    else{
+      return done(null, user)
+    }
+  }
+  catch(err){
+    return done(err)
+  }
+});
+
+passport.use(VKontakteStrategy)
+
 module.exports = passport
