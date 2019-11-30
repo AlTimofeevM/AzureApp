@@ -42,7 +42,7 @@ const auth = (req, res, next) => {
   }
 }
 
-app.get('/', (req,res) => {
+app.get('/', auth, (req,res) => {
     res.render('index')
 })
 
