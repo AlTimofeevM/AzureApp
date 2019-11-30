@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlTimofeevM/AzureChat.git"
+    "url": "git+https://github.com/AlTimofeevM/AzureApp.git"
   },
   "author": "Alexander Timofeev",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AlTimofeevM/AzureChat/issues"
+    "url": "https://github.com/AlTimofeevM/AzureApp/issues"
   },
-  "homepage": "https://github.com/AlTimofeevM/AzureChat#readme",
+  "homepage": "https://github.com/AlTimofeevM/AzureApp#readme",
   "dependencies": {
     "ejs": "^2.7.2",
     "express": "^4.17.1",
