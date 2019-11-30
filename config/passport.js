@@ -17,4 +17,5 @@ passport.use(new VKontakteStrategy({
     })
   }
 ));
+
 module.exports = passport
