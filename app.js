@@ -59,7 +59,7 @@ app.get('/auth/vkontakte/callback',
 
 app.get('/logout', (req, res) => {
     req.logOut();
-    res.redirect('/home');
+    res.redirect('/');
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
