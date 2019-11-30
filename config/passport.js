@@ -1,6 +1,6 @@
 const passport = require('passport')
 const VKontakteStrategy = require('passport-vkontakte').Strategy;
-const User = require('../model/UserModel')
+const UserModel = require('../model/UserModel')
 
 passport.use(new VKontakteStrategy({
     clientID:     6769250,
