@@ -18,6 +18,10 @@
   "homepage": "https://github.com/AlTimofeevM/AzureChat#readme",
   "dependencies": {
     "ejs": "^2.7.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.7.13",
+    "passport": "^0.4.0",
+    "passport-openid": "^0.4.0",
+    "passport-vkontakte": "^0.3.2"
   }
 }
