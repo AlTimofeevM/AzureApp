@@ -1,17 +1,16 @@
 const passport = require('passport')
-const OpenIDStrategy = require('passport-openid').Strategy;
+const VKontakteStrategy = require('passport-vkontakte').Strategy;
 const User = require('../model/UserModel')
 
-passport.use(new OpenIDStrategy({
-    returnURL: 'http://localhost/auth/openid/return',
-    realm: 'http://localhost/'
+passport.use(new VKontakteStrategy({
+    clientID:     6769250,
+    clientSecret: "Bgky4Pwj4VPeEOKnfZCB",
+    callbackURL:  "https://rocketazureapp.azurewebsites.net//auth/vkontakte/callback"
   },
-  function(identifier, done) {
-    console.log(identifier)
-    User.findOrCreate({ openId: identifier }, function(err, user) {
-      done(err, user);
+  function(accessToken, refreshToken, params, profile, done) {
+    User.findOrCreate({ vkontakteId: profile.id }, function (err, user) {
+      return done(err, user);
     });
   }
 ));
-
 module.exports = passport

@@ -16,10 +16,18 @@ app.get('/', (req,res) => {
     res.render('index')
 })
 
-app.post('/auth/openid', passport.authenticate('openid'));
+app.get('/auth/vkontakte',
+  passport.authenticate('vkontakte'),
+  function(req, res){
+    // The request will be redirected to vk.com for authentication, so
+    // this function will not be called.
+  });
 
-app.get('/auth/openid/return',
-  passport.authenticate('openid', { successRedirect: '/suc',
-                                    failureRedirect: '/login' }));
+app.get('/auth/vkontakte/callback',
+  passport.authenticate('vkontakte', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
