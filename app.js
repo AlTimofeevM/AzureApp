@@ -62,4 +62,8 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+app.post('/button', auth, (req,res) => {
+  res.send("Кнопка нажата")
+})
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
