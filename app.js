@@ -64,7 +64,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.post('/button', auth, (req,res) => {
-  ansible.createRG()
+  // ansible.createRG()
   res.redirect('/')
 })
 
