@@ -1,10 +1,10 @@
 - hosts: localhost
   connection: local
   vars:
-    resource_group_webapp: myResourceGroupWebapp
-    resource_group: myResourceGroup
-    webapp_name: myLinuxWebApp
-    plan_name: myAppServicePlan
+    resource_group_webapp: RocketAzureApp
+    resource_group: RocketAzureApp
+    webapp_name: rocketazure
+    plan_name: ASP-RocketAzureApp-b9e9
     location: eastus
     traffic_manager_profile_name: myTrafficManagerProfile
     traffic_manager_endpoint_name: myTrafficManagerEndpoint
