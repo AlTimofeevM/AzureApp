@@ -4,6 +4,7 @@ const FileStore = require('session-file-store')(session);
 const passport = require('./config/passport')
 const path = require('path')
 const publicPath = path.join(__dirname, '/public')
+const ansible = require('./ansible/ansible')
 
 const app = express();
 const port = process.env.PORT || 80
@@ -63,7 +64,8 @@ app.get('/logout', (req, res) => {
 });
 
 app.post('/button', auth, (req,res) => {
-  res.send("Кнопка нажата")
+  ansible.createRG()
+  res.redirect('/')
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
