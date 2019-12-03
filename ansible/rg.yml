@@ -1,11 +1,11 @@
 ---
 - hosts: localhost
-  connection: local
+  connection: 137.117.167.54
   tasks:
     - name: Create resource group
       azure_rm_resourcegroup:
         name: ansible-rg
-        location: eastus
+        location: westeurope
       register: rg
     - debug:
         var: rg
