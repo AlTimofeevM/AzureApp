@@ -1,6 +1,3 @@
-const Ansible = require('node-ansible');
+const bash = require('bash')
 
-exports.createRG = function(){
-    const playbook = new Ansible.Playbook().playbook('rg')
-    playbook.exec()
-}
+bash.escape('hello world');
