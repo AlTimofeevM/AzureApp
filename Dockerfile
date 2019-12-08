@@ -1,19 +1,30 @@
-FROM node:10
+#
+# Ubuntu Node.js Dockerfile
+#
+# https://github.com/dockerfile/ubuntu/blob/master/Dockerfile
+# https://docs.docker.com/examples/nodejs_web_app/
+#
 
-MAINTAINER Alexander Timofeev <al.timofeev.m@yandex.ru>
+# Pull base image.
+FROM ubuntu:14.04
 
-# Create app directory
-WORKDIR /usr/src/app
+# Install Node.js
+RUN apt-get install --yes curl
+RUN curl --silent --location https://deb.nodesource.com/setup_4.x | sudo bash -
+RUN apt-get install --yes nodejs
+RUN apt-get install --yes build-essential
+RUN export AZURE_SUBSCRIPTION_ID="ad6fe0fd-4790-4699-9dc6-1d1f193f680b"
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
+# Bundle app source
+# Trouble with COPY http://stackoverflow.com/a/30405787/2926832
 COPY package*.json ./
 
-RUN export AZURE_SUBSCRIPTION_ID="ad6fe0fd-4790-4699-9dc6-1d1f193f680b"
+# Install app dependencies
 RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
 
-EXPOSE 8080
-CMD [ "node", "app.js" ]
+# Binds to port 8080
+EXPOSE  8080
+
+#  Defines your runtime(define default command)
+# These commands unlike RUN (they are carried out in the construction of the container) are run when the container
+CMD ["node", "app.js"]
