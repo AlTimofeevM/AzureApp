@@ -46,6 +46,10 @@ app.get('/',  (req,res) => {
     res.render('index')
 })
 
+app.get('/check', (req,res) =>{
+  res.send(process.env.AZURE_SUBSCRIPTION_ID)
+})
+
 app.get('/auth/vkontakte',
   passport.authenticate('vkontakte'),
   function(req, res){

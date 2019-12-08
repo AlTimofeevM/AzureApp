@@ -1,5 +1,7 @@
 FROM node:10
 
+MAINTAINER Alexander Timofeev <al.timofeev.m@yandex.ru>
+
 # Create app directory
 WORKDIR /usr/src/app
 
@@ -8,7 +10,7 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-
+RUN export AZURE_SUBSCRIPTION_ID="ad6fe0fd-4790-4699-9dc6-1d1f193f680b"
 RUN npm install
 # If you are building your code for production
 # RUN npm ci --only=production

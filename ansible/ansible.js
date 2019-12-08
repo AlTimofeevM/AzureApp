@@ -1,5 +1,5 @@
 const Ansible = require('node-ansible')
-
+console.log(process.env.AZURE_SUBSCRIPTION_ID)
 // module.exports.createVM = function() {
     const playbook = new Ansible.Playbook().playbook('createVM')
     var promise = playbook.exec();
