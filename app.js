@@ -4,6 +4,8 @@ const FileStore = require('session-file-store')(session);
 const passport = require('./config/passport')
 const path = require('path')
 const publicPath = path.join(__dirname, '/public')
+const rec = require('./text_recog/textrecog')
+const UserModel = require('./model/UserModel')
 //const ansible =  require('./ansible/ansible')
 const app = express();
 const port = process.env.PORT || 80
@@ -42,7 +44,7 @@ const auth = (req, res, next) => {
   }
 }
 
-app.get('/', auth, (req,res) => {
+app.get('/', (req,res) => {
     res.render('index')
 })
 
@@ -66,8 +68,10 @@ app.get('/logout', (req, res) => {
     res.redirect('/login');
 });
 
-app.post('/button', auth, (req,res) => {
-  //ansible.createVM()
+app.post('/button', async (req,res) => {
+  let link = req.body.link
+  await UserModel.findOneAndUpdate({vkontakteId:req.user.vkontakteId}, {$push : {links: link}, $push : {texts : "Картинка обрабатывается"}})
+  rec.recog(req.user.vkontakteId,link)
   res.redirect('/')
 })
 
