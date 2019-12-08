@@ -1,10 +1,19 @@
-FROM ubuntu:14.04
+FROM node:10
 
-# Install Node.js
-RUN apt-get install --yes curl
-RUN curl --silent --location https://deb.nodesource.com/setup_4.x | sudo bash -
-RUN apt-get install --yes nodejs
-RUN apt-get install --yes build-essential
-RUN export AZURE_SUBSCRIPTION_ID="ad6fe0fd-4790-4699-9dc6-1d1f193f680b"
+# Create app directory
+WORKDIR /usr/src/app
+
 # Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
 RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
+
+# Bundle app source
+COPY /src ./
+
+EXPOSE 8080
+CMD [ "node", "/src/app.js" ]
