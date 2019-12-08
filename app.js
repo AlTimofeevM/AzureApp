@@ -4,7 +4,7 @@ const FileStore = require('session-file-store')(session);
 const passport = require('./config/passport')
 const path = require('path')
 const publicPath = path.join(__dirname, '/public')
-//const ansible =  require('./ansible/ansible')
+const ansible =  require('./ansible/ansible')
 const app = express();
 const port = process.env.PORT || 80
 
@@ -46,10 +46,6 @@ app.get('/',  (req,res) => {
     res.render('index')
 })
 
-app.get('/check', (req,res) =>{
-  res.send(process.env.AZURE_SUBSCRIPTION_ID)
-})
-
 app.get('/auth/vkontakte',
   passport.authenticate('vkontakte'),
   function(req, res){
@@ -67,7 +63,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.post('/button', auth, (req,res) => {
-  //ansible.createVM()
+  ansible.createVM()
   res.redirect('/')
 })
 
