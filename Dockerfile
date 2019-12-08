@@ -13,6 +13,7 @@ RUN apt-get install --yes curl
 RUN curl --silent --location https://deb.nodesource.com/setup_4.x | sudo bash -
 RUN apt-get install --yes nodejs
 RUN apt-get install --yes build-essential
+RUN apt install nginx
 
 # Bundle app source
 # Trouble with COPY http://stackoverflow.com/a/30405787/2926832
