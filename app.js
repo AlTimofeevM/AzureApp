@@ -62,6 +62,10 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+app.get('/ch', (req,res) => {
+  res.send(process.env.AZURE_SUBSCRIPTION_ID)
+})
+
 app.post('/button', auth, (req,res) => {
   //ansible.createVM()
   res.redirect('/')

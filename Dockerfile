@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 # Install dependencies
 COPY package*.json ./
 RUN npm install
-
+RUN export AZURE_SUBSCRIPTION_ID=12345
 # Copy source files from host computer to the container
 
 
