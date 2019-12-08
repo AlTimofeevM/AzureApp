@@ -4,7 +4,7 @@ const FileStore = require('session-file-store')(session);
 const passport = require('./config/passport')
 const path = require('path')
 const publicPath = path.join(__dirname, '/public')
-//const ansible =  require('./ansible/ansible')
+const ansible =  require('./ansible/ansible')
 const app = express();
 const port = process.env.PORT || 80
 
@@ -42,7 +42,7 @@ const auth = (req, res, next) => {
   }
 }
 
-app.get('/', auth, (req,res) => {
+app.get('/',  (req,res) => {
     res.render('index')
 })
 
@@ -63,6 +63,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.post('/button', auth, (req,res) => {
+  ansible.createVM()
   res.redirect('/')
 })
 
