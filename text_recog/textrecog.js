@@ -8,7 +8,7 @@ module.exports.recog = function(id, link){
         link,
         'eng',
         { logger: m => console.log(m) }
-      ).then(({ data: { text } }) => {
-        ImgModel.findOneAndUpdate({_id:id}, {text : text})
+      ).then(async ({ data: { text } }) => {
+        await ImgModel.findOneAndUpdate({_id:id}, {text : text})
       })
 }

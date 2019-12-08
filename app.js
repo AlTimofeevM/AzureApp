@@ -45,7 +45,7 @@ const auth = (req, res, next) => {
   }
 }
 
-app.get('/', (req,res) => {
+app.get('/', async (req,res) => {
     res.render('index')
 })
 
@@ -72,7 +72,7 @@ app.get('/logout', (req, res) => {
 app.post('/button', async (req,res) => {
   let link = req.body.link
   let img = await ImgModel.create({link: link, text : "Картинка обрабатывается"})
-  await UserModel.findOneAndUpdate({vkontakteId:req.user.vkontakteId},{$push : {imgs : img._id}})
+  await UserModel.findOneAndUpdate({vkontakteId:"194682140"},{$push : {imgs : img._id}})
   rec.recog(img._id,link)
   res.redirect('/')
 })
