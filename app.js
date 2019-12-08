@@ -38,12 +38,16 @@ const auth = (req, res, next) => {
     next()
   }
   else {
-    return res.redirect('/auth/vkontakte')
+    return res.redirect('/login')
   }
 }
 
-app.get('/',  (req,res) => {
+app.get('/', auth, (req,res) => {
     res.render('index')
+})
+
+app.get('/login', (req,res) =>{
+    res.render('login')
 })
 
 app.get('/auth/vkontakte',
@@ -52,19 +56,15 @@ app.get('/auth/vkontakte',
   });
 
 app.get('/auth/vkontakte/callback',
-  passport.authenticate('vkontakte', { failureRedirect: '/auth/vkontakte' }),
+  passport.authenticate('vkontakte', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
   });
 
 app.get('/logout', (req, res) => {
     req.logOut();
-    res.redirect('/');
+    res.redirect('/login');
 });
-
-app.get('/ch', (req,res) => {
-  res.send(process.env.AZURE_SUBSCRIPTION_ID)
-})
 
 app.post('/button', auth, (req,res) => {
   //ansible.createVM()

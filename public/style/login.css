@@ -1,0 +1,30 @@
+body{
+    background-color:  #343a3f;
+}
+
+.content{
+    margin-left:42%;
+    margin-top:15%;
+}
+
+.content button{
+    padding: 0;
+    border: none;
+    outline: none;
+    font: inherit;
+    color: inherit;
+    background: none;
+    box-shadow: none;
+}
+
+.content button::before{
+    content: "\f189";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: grey;    
+    font-size: 200px;
+    padding-right: 0.5em;
+}
+
