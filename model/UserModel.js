@@ -3,8 +3,7 @@ const connection = require('../config/db');
 
 const userSchema = mongoose.Schema({
     vkontakteId: String,
-    links : [String],
-    texts : [String]
+    imgs : [String]
 })
 
 const User = connection.model('User', userSchema)

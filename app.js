@@ -5,6 +5,7 @@ const passport = require('./config/passport')
 const path = require('path')
 const publicPath = path.join(__dirname, '/public')
 const rec = require('./text_recog/textrecog')
+const ImgModel = require('./model/ImgModel')
 const UserModel = require('./model/UserModel')
 //const ansible =  require('./ansible/ansible')
 const app = express();
@@ -70,8 +71,9 @@ app.get('/logout', (req, res) => {
 
 app.post('/button', async (req,res) => {
   let link = req.body.link
-  await UserModel.findOneAndUpdate({vkontakteId:req.user.vkontakteId}, {$push : {links: link}, $push : {texts : "Картинка обрабатывается"}})
-  rec.recog(req.user.vkontakteId,link)
+  let img = await ImgModel.create({link: link, text : "Картинка обрабатывается"})
+  await UserModel.findOneAndUpdate({vkontakteId:req.user.vkontakteId},{$push : {imgs : img._id}})
+  rec.recog(img._id,link)
   res.redirect('/')
 })
 

@@ -1,5 +1,5 @@
 const Tesseract = require( 'tesseract.js');
-const UserModel = require('../model/UserModel')
+const ImgModel = require('../model/ImgModel')
 
 
 
@@ -9,6 +9,6 @@ module.exports.recog = function(id, link){
         'eng',
         { logger: m => console.log(m) }
       ).then(({ data: { text } }) => {
-        UserModel.findOneAndUpdate({vkontakteId:id}, {$push : {texts : text}})
+        ImgModel.findOneAndUpdate({_id:id}, {text : text})
       })
 }
