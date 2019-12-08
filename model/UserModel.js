@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const connection = require('../../config/db');
+const connection = require('../config/db');
 
 const userSchema = mongoose.Schema({
     vkontakteId: String,
