@@ -1,19 +1,26 @@
-FROM node:10
+# what the parent image should be
+# node 9.4.0
+FROM node:alpine
 
-# Create app directory
+# create a directory for our app
+RUN mkdir -p /usr/src/app
+# switch the working directory
 WORKDIR /usr/src/app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
+# copy package.json and get all the
+# dependencies
+COPY package.json /usr/src/app 
 
 RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
 
-# Bundle app source
-COPY /src ./
+# copy the application files
+# everything except that is ignored in the
+# docker ignore file
+COPY . /usr/src/app
 
-EXPOSE 8080
-CMD [ "node", "/src/app.js" ]
+# default express port
+EXPOSE 3000
+
+# start the application
+CMD [ "npm", "start" ]
+

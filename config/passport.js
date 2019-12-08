@@ -1,5 +1,5 @@
-const passport = require('passport')
-const VKontakteStrategy = require('passport-vkontakte').Strategy;
+const passport = require('./node_modules/passport')
+const VKontakteStrategy = require('./node_modules/passport-vkontakte').Strategy;
 const UserModel = require('../model/UserModel')
 
 passport.use(new VKontakteStrategy({
