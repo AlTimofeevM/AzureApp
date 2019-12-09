@@ -3,10 +3,10 @@ const db= require('../controller/dbController')
 
 
 
-module.exports.recog = function(id, link){
+module.exports.recog = function(id, link, lang){
     Tesseract.recognize(
         link,
-        'eng',
+        lang,
         { logger: m => console.log(m) }
       ).then(async ({ data: { text } }) => {
         await db.updateImg(id,text)

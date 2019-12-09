@@ -72,11 +72,11 @@ app.get('/logout',auth, (req, res) => {
     res.redirect('/login');
 });
 
-app.post('/button',auth,  async (req,res) => {
+app.post('/button', auth,  async (req,res) => {
   let img = await db.addImg(req.body.link)
   res.redirect('/history')
   await db.addImgToUser(req.user.vkontakteId, img._id)
-  rec.recog(img._id,req.body.link)
+  rec.recog(img._id,req.body.link, req.body.lang)
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
