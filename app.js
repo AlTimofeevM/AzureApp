@@ -5,8 +5,7 @@ const passport = require('./config/passport')
 const path = require('path')
 const publicPath = path.join(__dirname, '/public')
 const rec = require('./text_recog/textrecog')
-const ImgModel = require('./model/ImgModel')
-const UserModel = require('./model/UserModel')
+const db= require('./controller/dbController')
 //const ansible =  require('./ansible/ansible')
 const app = express();
 const port = process.env.PORT || 80
@@ -53,6 +52,10 @@ app.get('/login', (req,res) =>{
     res.render('login')
 })
 
+app.get('/history', async (req,res) => {
+  res.render('history', {History : await db.getHistory(req.user.vkontakteId)})
+})
+
 app.get('/auth/vkontakte',
   passport.authenticate('vkontakte'),
   function(req, res){
@@ -70,11 +73,10 @@ app.get('/logout', (req, res) => {
 });
 
 app.post('/button', async (req,res) => {
-  let link = req.body.link
-  let img = await ImgModel.create({link: link, text : "Картинка обрабатывается"})
-  await UserModel.findOneAndUpdate({vkontakteId:"194682140"},{$push : {imgs : img._id}})
-  rec.recog(img._id,link)
-  res.redirect('/')
+  let img = await db.addImg(req.body.link)
+  res.redirect('/history')
+  await db.addImgToUser(req.user.vkontakteId, img._id)
+  rec.recog(img._id,req.body.link)
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
