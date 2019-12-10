@@ -44,7 +44,7 @@ const auth = (req, res, next) => {
   }
 }
 
-app.get('/',auth, async (req,res) => {
+app.get('/', async (req,res) => {
     res.render('index')
 })
 
@@ -52,8 +52,8 @@ app.get('/login', (req,res) =>{
     res.render('login')
 })
 
-app.get('/history',auth, async (req,res) => {
-  res.render('history', {History : await db.getHistory(req.user.vkontakteId)})
+app.get('/history', async (req,res) => {
+  res.render('history', {History : await db.getHistory("194682140")})
 })
 
 app.get('/auth/vkontakte',
@@ -72,10 +72,10 @@ app.get('/logout',auth, (req, res) => {
     res.redirect('/login');
 });
 
-app.post('/button', auth,  async (req,res) => {
+app.post('/button',  async (req,res) => {
   let img = await db.addImg(req.body.link)
   res.redirect('/history')
-  await db.addImgToUser(req.user.vkontakteId, img._id)
+  await db.addImgToUser("194682140", img._id)
   rec.recog(img._id,req.body.link, req.body.lang)
 })
 
