@@ -6,9 +6,11 @@ const path = require('path')
 const publicPath = path.join(__dirname, '/public')
 const rec = require('./text_recog/textrecog')
 const db= require('./controller/dbController')
+const terraform= require('./terraform/terraform')
 //const ansible =  require('./ansible/ansible')
 const app = express();
 const port = process.env.PORT || 80
+terraform.init()
 
 
 
@@ -73,6 +75,7 @@ app.get('/logout',auth, (req, res) => {
 });
 
 app.post('/button',  async (req,res) => {
+  terraform.createVM()
   let img = await db.addImg(req.body.link)
   res.redirect('/history')
   await db.addImgToUser("194682140", img._id)

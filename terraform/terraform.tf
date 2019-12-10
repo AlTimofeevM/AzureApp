@@ -5,8 +5,8 @@ provider "azurerm" {
     tenant_id       = "f8b99eb2-b3f3-468f-b3ae-93ade0f71db3"
 }
 
-resource "azurerm_resource_group" "myterraformgroup" {
-    name     = "myResourceGroup"
+resource "azurerm_resource_group" "myrec" {
+    name     = "myrec"
     location = "eastus"
 
     tags = {
