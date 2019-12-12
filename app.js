@@ -6,8 +6,7 @@ const path = require('path')
 const publicPath = path.join(__dirname, '/public')
 const rec = require('./text_recog/textrecog')
 const db= require('./controller/dbController')
-const terraform= require('./terraform/terraform')
-//const ansible =  require('./ansible/ansible')
+const ansible =  require('./ansible/ansible')
 const app = express();
 const port = process.env.PORT || 80
 
@@ -74,18 +73,11 @@ app.get('/logout',auth, (req, res) => {
 });
 
 app.post('/button',  async (req,res) => {
+  ansible.createVM()
   let img = await db.addImg(req.body.link)
   res.redirect('/history')
   await db.addImgToUser("194682140", img._id)
   rec.recog(img._id,req.body.link, req.body.lang)
-})
-
-app.get('/ansible', (req,res) =>{
-  terraform.createVM()
-})
-
-app.get('/terraform', (req,res) =>{
-  terraform.init()
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
