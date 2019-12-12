@@ -1,7 +1,7 @@
 const exec = require('child_process').exec;
 
-module.exports.init = function(){
-    exec('terraform init', (err, stdout, stderr) => {
+exports.init = async function(res){
+    await exec('terraform --version', (err, stdout, stderr) => {
         if (err) {
       
           console.error(err);
@@ -9,12 +9,12 @@ module.exports.init = function(){
           return;
         }
       
-        console.log(stdout);
+        res.send(stdout)
       });
 }
 
-module.exports.createVM = function(){
-    exec('terraform apply -auto-approve', (err, stdout, stderr) => {
+exports.createVM = async function(res){
+    await exec('ansible --version', (err, stdout, stderr) => {
         if (err) {
       
           console.error(err);
@@ -22,9 +22,6 @@ module.exports.createVM = function(){
           return;
         }
       
-        console.log(stdout);
-      });
-      
-      
+        res.send(stdout)
+      });     
 }
-

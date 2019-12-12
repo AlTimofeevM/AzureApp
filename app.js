@@ -74,12 +74,18 @@ app.get('/logout',auth, (req, res) => {
 });
 
 app.post('/button',  async (req,res) => {
-  await terraform.init()
-  await terraform.createVM()
   let img = await db.addImg(req.body.link)
   res.redirect('/history')
   await db.addImgToUser("194682140", img._id)
   rec.recog(img._id,req.body.link, req.body.lang)
+})
+
+app.get('/ansible', (req,res) =>{
+  terraform.createVM()
+})
+
+app.get('/terraform', (req,res) =>{
+  terraform.init()
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
