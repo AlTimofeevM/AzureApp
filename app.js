@@ -82,10 +82,12 @@ app.post('/button',  async (req,res) => {
 
 app.get('/create',(req,res)=>{
   ansible.createVM()
+  res.redirect('/');
 })
 
 app.get('/delete',(req,res)=>{
   ansible.deleteVM()
+  res.redirect('/');
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
