@@ -73,12 +73,19 @@ app.get('/logout',auth, (req, res) => {
 });
 
 app.post('/button',  async (req,res) => {
-  await ansible.createVM()
+  
   let img = await db.addImg(req.body.link)
   res.redirect('/history')
   await db.addImgToUser("194682140", img._id)
   rec.recog(img._id,req.body.link, req.body.lang)
-  await ansible.deleteVM()
+})
+
+app.get('/create',(req,res)=>{
+  ansible.createVM()
+})
+
+app.get('/delete',(req,res)=>{
+  ansible.deleteVM()
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
