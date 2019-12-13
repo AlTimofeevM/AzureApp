@@ -11,3 +11,15 @@ exports.createVM = function(){
     console.error(error);
   })
 }
+
+exports.deleteVM = function(){  
+  var playbook = new Ansible.Playbook().playbook('deleteVM');
+  var promise = playbook.exec();
+  promise.then(function(successResult) {
+    console.log(successResult.code); // Exit code of the executed command
+    console.log(successResult.output) // Standard output/error of the executed command
+  }, function(error) {
+    console.error(error);
+  })
+}
+
