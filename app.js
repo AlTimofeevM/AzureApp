@@ -53,7 +53,7 @@ app.get('/login', (req,res) =>{
 })
 
 app.get('/history', async (req,res) => {
-  res.render('history', {History : await db.getHistory("194682140")})
+  res.render('history', {History : await db.getHistory(req.user.vkontakteId)})
 })
 
 app.get('/auth/vkontakte',
@@ -76,17 +76,17 @@ app.post('/button',  async (req,res) => {
   
   let img = await db.addImg(req.body.link)
   res.redirect('/history')
-  await db.addImgToUser("194682140", img._id)
+  await db.addImgToUser(req.user.vkontakteId, img._id)
   rec.recog(img._id,req.body.link, req.body.lang)
 })
 
 app.get('/create',(req,res)=>{
-  ansible.createVM()
+  ansible.createVM(req.user.vkontakteId)
   res.redirect('/');
 })
 
 app.get('/delete',(req,res)=>{
-  ansible.deleteVM()
+  ansible.deleteVM(req.user.vkontakteId)
   res.redirect('/');
 })
 
