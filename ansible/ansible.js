@@ -1,25 +1,23 @@
-const Ansible = require('node-ansible');
+const { exec, spawn } = require('child_process');
 
 
 exports.createVM = function(){  
-  var playbook = new Ansible.Playbook().playbook('createVM');
-  var promise = playbook.exec();
-  promise.then(function(successResult) {
-    console.log(successResult.code); // Exit code of the executed command
-    console.log(successResult.output) // Standard output/error of the executed command
-  }, function(error) {
-    console.error(error);
-  })
+  exec('ansible-playbook createVM.yml --extra-vars "userID=12345"', (err, stdout, stderr) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(stdout);
+  });
 }
 
 exports.deleteVM = function(){  
-  var playbook = new Ansible.Playbook().playbook('deleteVM');
-  var promise = playbook.exec();
-  promise.then(function(successResult) {
-    console.log(successResult.code); // Exit code of the executed command
-    console.log(successResult.output) // Standard output/error of the executed command
-  }, function(error) {
-    console.error(error);
-  })
+  exec('ansible-playbook deleteVM.yml --extra-vars "userID=12345"', (err, stdout, stderr) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(stdout);
+  });
 }
 
