@@ -2,7 +2,7 @@ const { exec, spawn } = require('child_process');
 
 
 exports.createVM = function(id){  
-  exec('ansible-playbook createVM.yml --extra-vars "' + userId+ '"', (err, stdout, stderr) => {
+  exec('ansible-playbook createVM.yml --extra-vars "' + id+ '"', (err, stdout, stderr) => {
     if (err) {
       console.error(err);
       return;
@@ -12,7 +12,7 @@ exports.createVM = function(id){
 }
 
 exports.deleteVM = function(id){  
-  exec('ansible-playbook deleteVM.yml --extra-vars "userID=' + userId+ '"', (err, stdout, stderr) => {
+  exec('ansible-playbook deleteVM.yml --extra-vars "userID=' + id+ '"', (err, stdout, stderr) => {
     if (err) {
       console.error(err);
       return;
