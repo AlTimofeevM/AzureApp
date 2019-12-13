@@ -1,4 +1,10 @@
-- name: Create a resource group
-  azure_rm_resourcegroup:
-    name: myResourceGroup
-    location: westus
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Create resource group
+      azure_rm_resourcegroup:
+        name: ansible-rg
+        location: eastus
+      register: rg
+    - debug:
+        var: rg

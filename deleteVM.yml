@@ -1,4 +1,8 @@
-- name: Delete a resource group
-  azure_rm_resourcegroup:
-    name: myResourceGroup
-    state: absent
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Delete resource group
+      azure_rm_resourcegroup:
+        name: ansible-rg
+        location: eastus
+        state: absent
