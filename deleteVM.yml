@@ -3,5 +3,5 @@
   tasks:
     - name: Delete a resource group including resources it contains
       azure_rm_resourcegroup:
-        name: "rc-{{ userID }}"
+        name: "rg-{{ userID }}"
         state: absent
