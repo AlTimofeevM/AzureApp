@@ -21,3 +21,23 @@ exports.deleteVM = function(id){
   });
 }
 
+exports.stopVM = function(id){
+  exec('ansible-playbook stopVM.yml --extra-vars "userID=' + id + '"' , (err, stdout, stderr) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(stdout);
+  });
+}
+
+exports.startVM = function(id){
+  exec('ansible-playbook startVM.yml --extra-vars "userID=' + id + '"' , (err, stdout, stderr) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(stdout);
+  });
+}
+
