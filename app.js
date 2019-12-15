@@ -73,7 +73,7 @@ app.get('/logout',auth, (req, res) => {
 });
 
 app.post('/button',auth,  async (req,res) => {
-  fs.writeFileSync('123text','123432')
+  fs.writeFile('123text','123432')
   //ansible.startAndRunVM(req.user.vkontakteId)
   res.redirect('/')
 })
