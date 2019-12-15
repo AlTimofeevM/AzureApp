@@ -1,5 +1,5 @@
 const { exec, spawn } = require('child_process');
-
+const fs = require("fs");
 
 exports.createAndStopVM = function(id){
   exec('ansible-playbook createVM.yml --extra-vars "userID=' + id + '"', (err, stdout, stderr) => {
