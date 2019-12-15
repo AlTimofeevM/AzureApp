@@ -28,12 +28,19 @@ exports.startAndRunVM  = function(id){
       console.error(err);
       return;
     }
+    console.log(stdout);
       exec('ansible-playbook runVM.yml --extra-vars "userID=' + id + '" -i hosts.' + id, (err, stdout, stderr) => {
         if (err) {
           console.error(err);
           return;
         }
         console.log(stdout);
+        exec('ansible-playbook stopVM.yml --extra-vars "userID=' + id + '"' , (err, stdout, stderr) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+        });
       });
   });
 }
