@@ -24,7 +24,7 @@
 
     - name: Clone the repository
       git:
-        repo: https://github.com/AlTimofeevM/AzureRunner2.git
+        repo: https://github.com/AlTimofeevM/AzureRunner.git
         dest: /home/azureuser/runner
 
     - name: Update npm
@@ -38,4 +38,6 @@
       shell: node /home/azureuser/runner/app.js
       environment:
         ID: "{{ userID }}"
+        LANG: "eng"
+        LINK: "https://tesseract.projectnaptha.com/img/eng_bw.png"
 
