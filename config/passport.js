@@ -12,7 +12,7 @@ passport.use(new VKontakteStrategy({
       if (err) { return done(err); }
       if (!user) {
         let user = UserModel.create({vkontakteId : profile.id})
-        ansible.startAndRunVM(profile.id)
+        ansible.createAndStopVM(profile.id)
       } 
       return done(null, user);
     })
