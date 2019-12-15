@@ -1,0 +1,43 @@
+- name: RunVM
+  hosts: dev
+  gather_facts: yes
+  become: yes
+  vars:
+    NODEJS_VERSION: "8"
+    ansible_distribution_release: "xenial" #trusty
+  tasks:
+    - name: Install the gpg key for nodejs LTS
+      apt_key:
+        url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+        state: present
+  
+    - name: Install the nodejs LTS repos
+      apt_repository:
+        repo: "deb https://deb.nodesource.com/node_{{ NODEJS_VERSION }}.x {{ ansible_distribution_release }} main"
+        state: present
+        update_cache: yes
+  
+    - name: Install the nodejs
+      apt:
+        name: nodejs
+        state: present
+
+    - name: Clone the repository
+      git:
+        repo: https://github.com/AlTimofeevM/AzureRunner.git
+        dest: /home/azureuser/runner
+
+    - name: Update npm
+      npm:
+        path=/home/azureuser/runner
+    
+    - name: npm install
+      shell: npm install /home/azureuser/runner
+
+    - name: start app
+      shell: node /home/azureuser/runner/app.js
+      environment:
+        LINK: "https://tesseract.projectnaptha.com/img/eng_bw.png"
+        LANG: "eng"
+        ID: "5dee1e8f96ff5d0c941c22e1"
+

@@ -41,3 +41,12 @@ exports.startVM = function(id){
   });
 }
 
+exports.runVM = function(id){
+  exec('ansible-playbook runVM.yml -i hosts' , (err, stdout, stderr) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(stdout);
+  });
+}

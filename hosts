@@ -1,0 +1,7 @@
+[dev]
+ip
+
+[dev:vars]
+ansible_user=azureuser
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_ssh_private_key_file=/home/altimofeev/.ssh/id_rsa
