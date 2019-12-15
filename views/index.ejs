@@ -10,7 +10,7 @@
   </head>
   <body> 
     <div class="content">
-      <% if(User.available === "yes" ){%>
+      <% if(User.available === 1 ){%>
       <form method="POST" action="/button">
         <label for="image"><b>Выберите язык:</b></label>
         <p><input  type="radio" name="lang" value="eng" checked>Английский</p>
