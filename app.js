@@ -9,7 +9,6 @@ const db= require('./controller/dbController')
 const ansible =  require('./ansible/ansible')
 const app = express();
 const port = process.env.PORT || 80
-const fs = require("fs");
 
 
 app.set("view engine", "ejs")
@@ -73,8 +72,7 @@ app.get('/logout',auth, (req, res) => {
 });
 
 app.post('/button',auth,  async (req,res) => {
-  fs.writeFileSync('/home/site/repository/123text.txt','123432')
-  //ansible.startAndRunVM(req.user.vkontakteId)
+  ansible.startAndRunVM(req.user.vkontakteId)
   res.redirect('/')
 })
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

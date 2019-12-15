@@ -10,7 +10,7 @@ exports.createAndStopVM = function(id){
     }
     let preIP = stdout.substr(stdout.indexOf("The public IP is") + 17,17)
     let IP = preIP.substr(0,preIP.indexOf('"')-1)
-    fs.writeFileSync('hosts.' + id, '[dev]\n' + IP + '\n\n[dev:vars]\nansible_user=azureuser\nansible_ssh_common_args="-o StrictHostKeyChecking=no"\nansible_ssh_private_key_file=/home/site/repository/.ssh/id_rsa"')
+    fs.writeFileSync('/home/site/repository/hosts.' + id, '[dev]\n' + IP + '\n\n[dev:vars]\nansible_user=azureuser\nansible_ssh_common_args="-o StrictHostKeyChecking=no"\nansible_ssh_private_key_file=/home/site/repository/.ssh/id_rsa"')
     console.log(stdout);
     exec('ansible-playbook stopVM.yml --extra-vars "userID=' + id + '"' , (err, stdout, stderr) => {
         if (err) {
