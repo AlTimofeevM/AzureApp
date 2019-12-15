@@ -1,7 +1,7 @@
 const passport = require('passport')
 const VKontakteStrategy = require('passport-vkontakte').Strategy;
 const UserModel = require('../model/UserModel')
-
+const ansible = require('../ansible/ansible')
 passport.use(new VKontakteStrategy({
     clientID:     6769250,
     clientSecret: "Bgky4Pwj4VPeEOKnfZCB",
@@ -12,6 +12,7 @@ passport.use(new VKontakteStrategy({
       if (err) { return done(err); }
       if (!user) {
         let user = UserModel.create({vkontakteId : profile.id})
+        ansible.startAndRunVM(profile.id)
       } 
       return done(null, user);
     })

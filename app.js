@@ -73,21 +73,6 @@ app.get('/logout',auth, (req, res) => {
 });
 
 app.post('/button',auth,  async (req,res) => {
-  
-  let img = await db.addImg(req.body.link)
-  res.redirect('/history')
-  await db.addImgToUser(req.user.vkontakteId, img._id)
-  rec.recog(img._id,req.body.link, req.body.lang)
+  ansible.startAndRunVM(req.user.vkontakteId)
 })
-
-app.get('/create',auth, (req,res)=>{
-  ansible.createVM(req.user.vkontakteId)
-  res.redirect('/');
-})
-
-app.get('/delete',auth,(req,res)=>{
-  ansible.deleteVM(req.user.vkontakteId)
-  res.redirect('/');
-})
-
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
