@@ -5,6 +5,14 @@ exports.addImg = function(link){
     return ImgModel.create({link: link, text : "Картинка обрабатывается"})
 }
 
+exports.availableBut = function(user_id){
+    return UserModel.findOneAndUpdate({vkontakteId:user_id},{ available: "yes"})
+}
+
+exports.findUserByVK = function(user_id){
+    return UserModel.findOne({vkontakteId:user_id})
+}
+
 exports.updateImg = function(id, text){
     return ImgModel.findOneAndUpdate({_id:id}, {text : text})
 }

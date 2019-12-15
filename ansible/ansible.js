@@ -1,4 +1,5 @@
 const { exec, spawn } = require('child_process');
+const db= require('../controller/dbController')
 const fs = require("fs");
 
 exports.createAndStopVM = function(id){
@@ -16,7 +17,7 @@ exports.createAndStopVM = function(id){
           console.error(err);
           return;
         }
-        console.log(stdout);
+        db.availableBut(id)
       });
   });
 }

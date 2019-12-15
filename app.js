@@ -45,7 +45,7 @@ const auth = (req, res, next) => {
 }
 
 app.get('/',auth, async (req,res) => {
-    res.render('index')
+    res.render('index', {User : await db.findUserByVK(req.user.vkontakteId)})
 })
 
 app.get('/login', (req,res) =>{
