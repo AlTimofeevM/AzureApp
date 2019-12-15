@@ -17,6 +17,7 @@ exports.createAndStopVM = function(id){
           console.error(err);
           return;
         }
+        console.log(stdout);
         db.availableBut(id)
       });
   });
