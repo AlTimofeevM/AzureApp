@@ -6,7 +6,7 @@ exports.addImg = function(link){
 }
 
 exports.availableBut = function(user_id){
-    return UserModel.findOneAndUpdate({vkontakteId:user_id},{ available: "yes"})
+    return UserModel.findOneAndUpdate({vkontakteId:user_id},{ available: 1})
 }
 
 exports.findUserByVK = function(user_id){

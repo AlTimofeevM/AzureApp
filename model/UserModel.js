@@ -3,7 +3,7 @@ const connection = require('../config/db');
 
 const userSchema = mongoose.Schema({
     vkontakteId: String,
-    available: String,
+    available: Number,
     agree: String
 })
 
