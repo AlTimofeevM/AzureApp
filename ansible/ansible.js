@@ -27,7 +27,7 @@ exports.startAndRunVM  = function(id){
       console.error(err);
       return;
     }
-      exec('ansible-playbook runVM.yml -i hosts.' + id , (err, stdout, stderr) => {
+      exec('ansible-playbook runVM.yml --extra-vars "userID=' + id + '" -i hosts.' + id, (err, stdout, stderr) => {
         if (err) {
           console.error(err);
           return;
