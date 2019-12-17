@@ -43,7 +43,7 @@ exports.runVM = function(id){
     fs.writeFileSync('/home/site/repository/hosts.' + id, '[dev]\n' + IP + '\n\n[dev:vars]\nansible_user=azureuser\nansible_ssh_common_args="-o StrictHostKeyChecking=no"\nansible_ssh_private_key_file=/home/site/repository/.ssh/id_rsa"')
     console.log(IP)
     console.log(stdout)
-    exec('ansible-playbook runVM.yml --extra-vars ""userId=' + id  + ' text=\'' + text +'\'"   -i hosts.' + id, (err, stdout, stderr) => {
+    exec('ansible-playbook runVM.yml --extra-vars "userId=' + id  + ' text=\'' + text +'\'"   -i hosts.' + id, (err, stdout, stderr) => {
       if (err) {
         console.error(err);
         return;
