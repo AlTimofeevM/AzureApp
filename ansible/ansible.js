@@ -33,7 +33,7 @@ exports.createRG = function(id){
 
 exports.runVM = function(id){
   const text = "Очень плохо"
-  exec('ansible-playbook createVM.yml --extra-vars ""userId=' + id + '"', (err, stdout, stderr) => {
+  exec('ansible-playbook createVM.yml --extra-vars "userId=' + id + '"', (err, stdout, stderr) => {
     if (err) {
         console.error(err);
         return;
