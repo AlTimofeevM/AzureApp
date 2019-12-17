@@ -4,7 +4,6 @@ const FileStore = require('session-file-store')(session);
 const passport = require('./config/passport')
 const path = require('path')
 const publicPath = path.join(__dirname, '/public')
-const rec = require('./text_recog/textrecog')
 const db= require('./controller/dbController')
 const ansible =  require('./ansible/ansible')
 const app = express();
@@ -72,7 +71,8 @@ app.get('/logout',auth, (req, res) => {
 });
 
 app.post('/button',auth,  async (req,res) => {
-  ansible.runVM(req.user.vkontakteId)
+  db.addText(req.user.vkontakteId, req.body.text)
+  ansible.runVM(req.user.vkontakteId, req.body.text)
   res.redirect('/')
 })
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
