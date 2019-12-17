@@ -50,10 +50,6 @@ app.get('/login', (req,res) =>{
     res.render('login')
 })
 
-app.get('/history',auth, async (req,res) => {
-  res.render('history', {History : await db.getHistory(req.user.vkontakteId)})
-})
-
 app.get('/auth/vkontakte',
   passport.authenticate('vkontakte'),
   function(req, res){
@@ -71,7 +67,7 @@ app.get('/logout',auth, (req, res) => {
 });
 
 app.post('/button',auth,  async (req,res) => {
-  db.addText(req.user.vkontakteId, req.body.text)
+  await db.addText(req.user.vkontakteId, req.body.text)
   ansible.runVM(req.user.vkontakteId, req.body.text)
   res.redirect('/')
 })

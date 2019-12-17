@@ -11,7 +11,7 @@ passport.use(new VKontakteStrategy({
     UserModel.findOne({ vkontakteId: profile.id }, function(err, user) {
       if (err) { return done(err); }
       if (!user) {
-        let user = UserModel.create({vkontakteId : profile.id})
+        let user = UserModel.create({vkontakteId : profile.id, text: "", emotion: ""})
         ansible.createRG(profile.id)
       } 
       return done(null, user);
