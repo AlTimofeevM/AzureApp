@@ -31,7 +31,7 @@ exports.createRG = function(id){
 }
 
 
-exports.runVM = funcrion(id){
+exports.runVM = function(id){
   exec('ansible-playbook VMcreation.yml --extra-vars "ID=' + id + '"', (err, stdout, stderr) => {
     if (err) {
         console.error(err);
