@@ -1,4 +1,4 @@
-- name: RunVM
+- name: VM start
   hosts: dev
   gather_facts: yes
   become: yes
@@ -6,11 +6,6 @@
     NODEJS_VERSION: "8"
     ansible_distribution_release: "xenial" #trusty
   tasks:
-    name: Install the python
-    apt:
-      name: nodejs
-      state: present
-
     - name: Install the gpg key for nodejs LTS
       apt_key:
         url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
@@ -42,7 +37,5 @@
     - name: start app
       shell: node /home/azureuser/runner/app.js
       environment:
-        ID: "{{ userID }}"
-        LANG: "eng"
-        LINK: "https://tesseract.projectnaptha.com/img/eng_bw.png"
-
+        ID: "{{ userId }}"
+        TEXT: "{{ text }}"
