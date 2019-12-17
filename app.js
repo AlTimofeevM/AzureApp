@@ -72,7 +72,7 @@ app.get('/logout',auth, (req, res) => {
 });
 
 app.post('/button',auth,  async (req,res) => {
-  ansible.startAndRunVM(req.user.vkontakteId)
+  ansible.runVM(req.user.vkontakteId)
   res.redirect('/')
 })
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
